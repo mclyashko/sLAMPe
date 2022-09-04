@@ -1,0 +1,12 @@
+version: "3.8"
+services:
+  apache_php:
+    build: ./apache
+    restart: always
+    ports:
+      - "8080:80"
+    depends_on:
+      - db
+  db:
+    build: ./mariadb
+    restart: always
