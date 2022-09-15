@@ -3,10 +3,12 @@ services:
   apache_php:
     build: ./apache
     restart: always
+    volumes:
+      - ./src/apache:/var/www/html
     ports:
       - "8080:80"
-    depends_on:
-      - db
   db:
     build: ./mariadb
     restart: always
+    volumes:
+      - ./src/mariadb:/docker-entrypoint-initdb.d
