@@ -1,20 +1,23 @@
 version: "3.8"
 services:
   nginx:
-    build: nginx
+    build: ./nginx
     restart: always
     volumes:
-      - ./nginx/src:/var/www/static
-      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./nginx/src:/etc/nginx/html/
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf
     ports:
-      - "8080:8080"
+      - "80:80"
   apache-php:
     build: ./apache-php
     restart: always
     volumes:
-      - ./apache-php/src:/var/www/dynamic
-#  db:
-#    build: ./mariadb
-##    restart: always
-#    volumes:
-#      - ./mariadb/src:/docker-entrypoint-initdb.d
+      - ./apache-php/src:/var/www/html
+      - ./apache-php/000-default.conf:/usr/local/apache2/conf/000-default.conf
+  mysql:
+    build: mysql
+    restart: always
+    volumes:
+      - ./mysql/src:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
