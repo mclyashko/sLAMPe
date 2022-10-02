@@ -1,14 +1,20 @@
 version: "3.8"
 services:
-  apache_php:
-    build: ./apache
+  nginx:
+    build: nginx
     restart: always
     volumes:
-      - ./src/apache:/var/www/html
+      - ./nginx/src:/var/www/static
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
     ports:
-      - "8080:80"
-  db:
-    build: ./mariadb
+      - "8080:8080"
+  apache-php:
+    build: ./apache-php
     restart: always
     volumes:
-      - ./src/mariadb:/docker-entrypoint-initdb.d
+      - ./apache-php/src:/var/www/dynamic
+#  db:
+#    build: ./mariadb
+##    restart: always
+#    volumes:
+#      - ./mariadb/src:/docker-entrypoint-initdb.d
