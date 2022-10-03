@@ -14,10 +14,29 @@ CREATE TABLE IF NOT EXISTS users
   AUTO_INCREMENT = 1
   DEFAULT CHARSET = latin1;
 
+# login password
 INSERT INTO users (login, password)
 SELECT *
-FROM (SELECT 'login', 'password') AS tmp
+FROM (SELECT 'login', '{SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g=') AS tmp
 WHERE NOT EXISTS(
-        SELECT login FROM users WHERE login = 'login' AND password = 'password'
+        SELECT login FROM users WHERE login = 'login' AND password = '{SHA}W6ph5Mm5Pz8GgiULbPgzG37mj9g='
+    )
+LIMIT 1;
+
+# admin admin
+INSERT INTO users (login, password)
+SELECT *
+FROM (SELECT 'admin', '{SHA}0DPiKuNIrrVmD8IUCuw1hQxNqZc=') AS tmp
+WHERE NOT EXISTS(
+        SELECT login FROM users WHERE login = 'admin' AND password = '{SHA}0DPiKuNIrrVmD8IUCuw1hQxNqZc='
+    )
+LIMIT 1;
+
+# user 1234567890
+INSERT INTO users (login, password)
+SELECT *
+FROM (SELECT 'user', '{SHA}AbMHrLpPVPVar8M7sGu79sqAPpo=') AS tmp
+WHERE NOT EXISTS(
+        SELECT login FROM users WHERE login = 'admin' AND password = '{SHA}AbMHrLpPVPVar8M7sGu79sqAPpo='
     )
 LIMIT 1;

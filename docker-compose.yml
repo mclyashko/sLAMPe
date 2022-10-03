@@ -13,7 +13,7 @@ services:
     restart: always
     volumes:
       - ./apache-php/src:/var/www/html
-      - ./apache-php/000-default.conf:/usr/local/apache2/conf/000-default.conf
+      - ./apache-php/000-default.conf:/etc/apache2/sites-available/000-default.conf
   mysql:
     build: mysql
     restart: always
