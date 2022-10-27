@@ -60,12 +60,12 @@ class Admin_user
     {
         $query = "
         UPDATE
-            users
+            users AS u
         SET
-            login = :login,
-            password = :password
+            u.login = '" . $this->login . "',
+            u.password = '" . $this->password . "'
         WHERE
-            id = :id;
+            u.id = '" . $this->id . "'
         ";
 
         $result = $this->connection->query($query);
@@ -76,7 +76,7 @@ class Admin_user
 
     function delete(): bool
     {
-        $query = "DELETE FROM users WHERE id = :id;";
+        $query = "DELETE FROM users WHERE id = '" . $this->id . "';";
 
         $result = $this->connection->query($query);
         $this->connection->commit();
