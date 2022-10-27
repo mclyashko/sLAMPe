@@ -14,9 +14,6 @@ $db = $database->getConnection();
 
 $admin_user = new Admin_user($db);
 
-// получаем id товара
-$data = json_decode(file_get_contents("php://input"));
-
 if (!isset($_GET["id"])) {
     http_response_code(400);
     echo json_encode(array("message" => "ERROR TO GET DATA"));

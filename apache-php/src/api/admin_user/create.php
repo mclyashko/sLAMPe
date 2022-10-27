@@ -36,5 +36,5 @@ if (
 }
 else {
     http_response_code(400);
-    echo json_encode(array("message" => "ERROR TO GET DATA"), JSON_UNESCAPED_UNICODE);
+    echo json_encode(array("message" => "ERROR TO GET DATA"));
 }
