@@ -21,7 +21,7 @@ if (
     !empty($data->login) &&
     !empty($data->password)
 ) {
-    $admin_user->ID = $data->ID;
+    $admin_user->id = $data->ID;
     $admin_user->login = $data->login;
     $admin_user->password = $data->password;
 
@@ -29,14 +29,12 @@ if (
         http_response_code(201);
 
         echo json_encode(array("message" => "UPDATED"));
-    }
-    else {
+    } else {
         http_response_code(503);
 
         echo json_encode(array("message" => "ERROR TO UPDATE"));
     }
-}
-else {
+} else {
     http_response_code(400);
     echo json_encode(array("message" => "ERROR TO GET DATA"), JSON_UNESCAPED_UNICODE);
 }

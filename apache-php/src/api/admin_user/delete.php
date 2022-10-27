@@ -21,7 +21,7 @@ if (!isset($_GET["id"])) {
     http_response_code(400);
     echo json_encode(array("message" => "ERROR TO GET DATA"));
 } else {
-    $admin_user->ID = $_GET["id"];
+    $admin_user->id = $_GET["id"];
 
     $result = $admin_user->delete();
 

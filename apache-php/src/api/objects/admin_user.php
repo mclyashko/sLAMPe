@@ -6,7 +6,7 @@ class Admin_user
     private mysqli $connection;
 
     // Свойства
-    public int $ID;
+    public int $id;
     public string $login;
     public string $password;
 
@@ -47,7 +47,7 @@ class Admin_user
         FROM
             users AS u
         WHERE
-            u.id = :id;
+            u.id = " . $this->id . ";
         ";
 
         $result = $this->connection->query($query);

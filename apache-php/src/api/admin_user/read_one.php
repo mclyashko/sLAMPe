@@ -18,15 +18,15 @@ if (!isset($_GET["id"])) {
     http_response_code(400);
     echo json_encode(array("message" => "ERROR TO GET DATA"));
 } else {
-    $admin_user->ID = $_GET["id"];
+    $admin_user->id = $_GET["id"];
 
-    $admin_user_found = $admin_user->readOne();
+    $admin_user_found = $admin_user->readOne()->fetch_array();
 
-    if ($admin_user_found instanceof mysqli_result) {
+    if ($admin_user_found != null) {
         $result = array(
-            "id" => $admin_user_found[0],
-            "login" => $admin_user_found[1],
-            "password" => $admin_user_found[2]
+            "id" => $admin_user_found["id"],
+            "login" => $admin_user_found["login"],
+            "password" => $admin_user_found["password"]
         );
         http_response_code(200);
         echo json_encode($result);
