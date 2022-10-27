@@ -28,9 +28,9 @@ class Admin_user
     function create(): bool
     {
         $query = "
-            INSERT INTO users
-            SET
-                login=:login, password=:password;
+            INSERT INTO users (login, password)
+            VALUES 
+                ('" . $this->login . "', '" . $this->password . "');
         ";
 
         $result = $this->connection->query($query);
