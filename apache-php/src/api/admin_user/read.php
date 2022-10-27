@@ -25,12 +25,12 @@ if (is_bool($data)) {
 
     foreach ($data as $admin_user_data) {
         $admin_user_element = array(
-            "ID" => $admin_user_data["ID"],
+            "ID" => $admin_user_data["id"],
             "login" => $admin_user_data["login"],
             "password" => $admin_user_data["password"]
         );
 
-        $data_to_encode["admin_users"][][] = $admin_user_element;
+        $data_to_encode["admin_users"][] = $admin_user_element;
     }
 
     http_response_code(200);

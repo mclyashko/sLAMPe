@@ -19,6 +19,6 @@ class Database
     }
 
     function __destruct() {
-        echo $this->connection->close();
+        $this->connection->close();
     }
 }
