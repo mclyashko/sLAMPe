@@ -17,4 +17,8 @@ class Database
 
         return $this->connection;
     }
+
+    function __destruct() {
+        echo $this->connection->close();
+    }
 }
