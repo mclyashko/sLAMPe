@@ -7,26 +7,27 @@ header("Access-Control-Allow-Headers: access");
 header("Access-Control-Allow-Credentials: true");
 
 include_once "../config/database.php";
-include_once "../objects/admin_user.php";
+include_once "../objects/forecast.php";
 
 $database = new Database();
 $db = $database->getConnection();
 
-$admin_user = new Admin_user($db);
+$forecast = new Forecast($db);
 
 if (!isset($_GET["id"])) {
     http_response_code(400);
     echo json_encode(array("message" => "ERROR TO GET DATA"));
 } else {
-    $admin_user->id = $_GET["id"];
+    $forecast->id = $_GET["id"];
 
-    $admin_user_found = $admin_user->readOne()->fetch_array();
+    $forecast_found = $forecast->readOne()->fetch_array();
 
-    if ($admin_user_found != null) {
+    if ($forecast_found != null) {
         $result = array(
-            "ID" => $admin_user_found["id"],
-            "login" => $admin_user_found["login"],
-            "password" => $admin_user_found["password"]
+            "ID" => $forecast_found["id"],
+            "day" => $forecast_found["day"],
+            "temperature" => $forecast_found["temperature"],
+            "about" => $forecast_found["about"]
         );
         http_response_code(200);
         echo json_encode($result);
