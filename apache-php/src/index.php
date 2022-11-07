@@ -1,3 +1,7 @@
+<?php
+require_once 'const.php';
+?>
+
 <html>
 <head>
     <meta charset="UTF-8">

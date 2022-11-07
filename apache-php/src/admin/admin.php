@@ -1,3 +1,7 @@
+<?php
+require_once '../const.php';
+?>
+
 <html>
 <head>
     <meta charset="UTF-8">
@@ -10,7 +14,7 @@
 <h1>Админ-панель</h1>
 <p>Обновить значение:</p>
 
-<form name="form" method="post" action="<?php echo $_SERVER['PHP_SELF']?>">
+<form name="form" method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
     <span>День:</span>
     <select name="day">
         <?php

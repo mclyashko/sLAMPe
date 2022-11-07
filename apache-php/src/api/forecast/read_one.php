@@ -1,4 +1,5 @@
 <?php
+require_once '../../const.php';
 
 header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Origin: *");
@@ -6,8 +7,8 @@ header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Headers: access");
 header("Access-Control-Allow-Credentials: true");
 
-include_once "../config/database.php";
-include_once "../objects/forecast.php";
+require_once "../config/database.php";
+require_once "../objects/forecast.php";
 
 $database = new Database();
 $db = $database->getConnection();

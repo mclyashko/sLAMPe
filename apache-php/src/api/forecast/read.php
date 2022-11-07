@@ -1,4 +1,5 @@
 <?php
+require_once '../../const.php';
 
 // Требуемые HTTP-заголовки
 
@@ -6,8 +7,8 @@ header("Access-Control-Allow-Methods: GET");
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
-include_once "../config/database.php";
-include_once "../objects/forecast.php";
+require_once "../config/database.php";
+require_once "../objects/forecast.php";
 
 $database = new Database();
 $db = $database->getConnection();

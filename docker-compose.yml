@@ -14,11 +14,17 @@ services:
     volumes:
       - ./apache-php/src:/var/www/html
       - ./apache-php/000-default.conf:/etc/apache2/sites-available/000-default.conf
+      - ./apache-php/php.ini:/usr/local/etc/php/conf.d/php.ini
   mysql:
     platform: linux/x86_64
-    build: mysql
+    build: ./mysql
     restart: always
     volumes:
       - ./mysql/src:/docker-entrypoint-initdb.d
     ports:
       - "3306:3306"
+  redis:
+    build: ./redis
+    restart: always
+    ports:
+      - "6379:6379"
