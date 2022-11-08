@@ -68,6 +68,7 @@ if (isset($_POST[$submitBtnName])) {
 <div>
     <a href="../index.html">Главная</a>
     <a href="../admin/users.php">Список пользователей-админов</a>
+    <a href="../admin/info.php">Отладочная информация</a>
 </div>
 </body>
 </html>
