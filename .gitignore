@@ -2,3 +2,6 @@
 **/*.docx
 **/*.pdf
 .idea
+/apache-php/vendor/
+/apache-php/composer.json
+/apache-php/composer.lock
