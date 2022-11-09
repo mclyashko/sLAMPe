@@ -32,6 +32,7 @@ $mysqli->close();
 ?>
 <div>
     <a href="index.html">Главная</a>
+    <a href="files.php">Файлы</a>
     <a href="individual_session_content.php">Индивидуальный сессионный контент</a>
 </div>
 </body>

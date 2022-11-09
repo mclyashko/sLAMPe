@@ -22,5 +22,9 @@ require_once 'const.php';
     <input type="submit" name="button" value="Скачать" />
 </form>
 
+<div>
+    <a href="index.html">Главная</a>
+</div>
+
 </body>
 </html>
