@@ -1,5 +1,5 @@
 <?php
-require_once 'const.php';
+require_once 'session.php';
 
 const file = "file";
 const file_name = "name";

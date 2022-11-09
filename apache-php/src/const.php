@@ -1,5 +1,5 @@
 <?php
-require_once 'env.php';
+require_once 'session.php';
 
 const dbHost = 'mysql', dbUser = 'user', dbPass = 'password', dbName = 'appDB';
 const tableWeatherReportName = 'weather_report', tableWeatherReportDay = 'day',
@@ -39,9 +39,5 @@ function set_enlarged_font(): void
     }
 }
 
-if (!isset($_SESSION)) {
-    session_start();
-
-    set_theme();
-    set_enlarged_font();
-}
+set_theme();
+set_enlarged_font();
