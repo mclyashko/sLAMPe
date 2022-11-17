@@ -17,12 +17,17 @@ require_once 'fakeCatsGenerator.php';
 require_once 'pieGraph.php';
 require_once 'barGraph.php';
 require_once 'scatterGraph.php';
+require_once 'watermark.php';
 
 file_put_contents('fakeCats.json', json_encode(generate_cats(50)));
 
 draw_pie();
 draw_bar();
 draw_scatter();
+
+add_watermark('pie.png', 'cat_watermark.png');
+add_watermark('bar.png', 'cat_watermark.png');
+add_watermark('scatter.png', 'cat_watermark.png');
 ?>
 <div>
     <img src="pie.png">
