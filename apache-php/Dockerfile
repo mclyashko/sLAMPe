@@ -7,3 +7,7 @@ RUN apt-get install unzip
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 WORKDIR /var/www
 RUN composer require mongodb/mongodb
+RUN apt-get install -y libpng-dev &&  \
+    docker-php-ext-install gd &&  \
+    composer require fakerphp/faker &&  \
+    composer require amenadiel/jpgraph

@@ -34,6 +34,7 @@ $mysqli->close();
     <a href="index.html">Главная</a>
     <a href="files.php">Файлы</a>
     <a href="individual_session_content.php">Индивидуальный сессионный контент</a>
+    <a href="./graphs/endpoint.php">Графики</a>
 </div>
 </body>
 </html>
