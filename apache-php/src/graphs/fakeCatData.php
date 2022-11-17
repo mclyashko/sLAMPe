@@ -19,7 +19,10 @@ class fakeCatData
      * @param string $mail
      * @param string $description
      */
-    public function __construct(string $name, string $color, string $longitude, string $latitude, string $job, string $mail, string $description)
+    public function __construct(
+        string $name, string $color, string $longitude,
+        string $latitude, string $job, string $mail,
+        string $description)
     {
         $this->name = $name;
         $this->color = $color;
