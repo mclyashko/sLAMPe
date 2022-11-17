@@ -18,7 +18,7 @@ function generate_cats(int $cats_amount): array
             $faker->longitude(),
             $faker->jobTitle(),
             $faker->email(),
-            implode(' ', $faker->shuffle(['meow', 'mew', 'mewl', 'nya', 'nyan']))
+            implode(' ', $faker->randomElements($faker->shuffle(['meow', 'mew', 'mewl', 'miaou', 'miau', 'miauw', 'miao', 'mjay', 'nya', 'nyan']), 7))
         );
     }
 

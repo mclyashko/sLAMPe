@@ -14,11 +14,30 @@ require_once '../const.php';
 <h1>Графики</h1>
 <?php
 require_once 'fakeCatsGenerator.php';
+require_once 'pieGraph.php';
+require_once 'barGraph.php';
+require_once 'scatterGraph.php';
 
-echo json_encode(generate_cats(50));
+file_put_contents('fakeCats.json', json_encode(generate_cats(50)));
+
+draw_pie();
+draw_bar();
+draw_scatter();
 ?>
 <div>
+    <img src="pie.png">
+    <img src="bar.png">
+    <img src="scatter.png">
+</div>
+<div>
     <a href="../index.html">Главная</a>
+</div>
+<div>
+    <?php
+        require_once 'dataLoader.php';
+
+        echo json_encode(raw_data());
+    ?>
 </div>
 </body>
 </html>
