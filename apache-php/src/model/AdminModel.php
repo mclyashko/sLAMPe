@@ -38,4 +38,8 @@ class AdminModel
         $this->mysqli->close();
         return $result;
     }
-}
+}?>
+
+<div>
+    <a href="/admin/weather.php">Редактирование погоды</a>
+</div>

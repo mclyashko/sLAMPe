@@ -2,7 +2,10 @@
 
 namespace db;
 
-class MysqliDb {
+use mysqli;
+
+class MysqliDb
+{
 
     // Данные базы данных
     private string $host = 'mysql';
@@ -20,7 +23,8 @@ class MysqliDb {
         return $this->connection;
     }
 
-    function __destruct() {
+    function __destruct()
+    {
         $this->connection->close();
     }
 }
