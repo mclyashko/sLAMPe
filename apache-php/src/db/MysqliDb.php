@@ -1,7 +1,9 @@
 <?php
 
-class Database
-{
+namespace db;
+
+class MysqliDb {
+
     // Данные базы данных
     private string $host = 'mysql';
     private string $db_name = 'appDB';

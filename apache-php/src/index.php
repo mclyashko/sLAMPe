@@ -1,40 +1,14 @@
 <?php
-require_once 'const.php';
-?>
+use core\Router;
 
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Weather Report</title>
-</head>
-<body>
-<h1>Прогноз</h1>
-<p>Прогноз на неделю:</p>
-<?php
-require_once 'const.php';
-$mysqli = new mysqli(dbHost, dbUser, dbPass, dbName);
-$weather_report = $mysqli->query('SELECT * FROM ' . tableWeatherReportName
-    . ' ORDER BY ' . tableWeatherReportId);
+spl_autoload_register(function($class){ //autoload classes
+    $path = str_replace('\\', '/', $class .'.php');
+    if (file_exists($path)) {
+        require $path;
+    }
+});
 
-foreach ($weather_report as $one_day_report) {
-    echo <<<REPORT
-        <div>
-            <span>{$one_day_report[tableWeatherReportDay]}</span>
-            <span>{$one_day_report[tableWeatherReportTemperature]}</span>
-            <span>{$one_day_report[tableWeatherReportAbout]}</span>
-        </div>
-    REPORT;
-}
-$mysqli->close();
-?>
-<div>
-    <a href="index.html">Главная</a>
-    <a href="files.php">Файлы</a>
-    <a href="individual_session_content.php">Индивидуальный сессионный контент</a>
-    <a href="./graphs/endpoint.php">Графики</a>
-</div>
-</body>
-</html>
+session_start();
+$router = new Router;
+$router->run();
+echo "index";
