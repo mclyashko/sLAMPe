@@ -1,24 +1,24 @@
 <?php
 
 namespace controller;
-use db\mysqliDb;
+
+use model\AdminModel;
 
 class AdminController
 {
     static private ?AdminController $state = null;
 
-    private MysqliDb $mysqli;
     private AdminModel $adminModel;
 
-    private function __construct($mysqli)
+    private function __construct($adminModel)
     {
-        $this->mysqli = $mysqli;
+        $this->adminModel = $adminModel;
     }
 
-    public static function getState(): ?AdminController
+    public static function getState($adminModel): ?AdminController
     {
         if (AdminController::$state == null) {
-            AdminController::$state = new AdminController(new MysqliDb());
+            AdminController::$state = new AdminController($adminModel);
         }
 
         return AdminController::$state;
@@ -26,9 +26,8 @@ class AdminController
 
     public function getAll(): void
     {
-        $admins = $this->adminModel->getAll();
+        $users = $this->adminModel->getAll();
 
-        require '../view/AdminView.php';
+        require __DIR__ . '/../view/AdminView.php';
     }
-
 }

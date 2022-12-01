@@ -1,7 +1,12 @@
 <?php
 
 namespace core;
+
 use controller\AdminController;
+use model\AdminModel;
+use mysqli;
+
+require_once 'Const.php';
 
 class Router
 {
@@ -13,7 +18,13 @@ class Router
 
         switch ($uri) {
             case "/admin.php":
-                AdminController::getState()->getAll();
+                AdminController::getState(
+                    AdminModel::getState(
+                        new mysqli(dbHost, dbUser, dbPass, dbName)
+                    )
+                )->getAll();
+                break;
+            case "":
                 break;
         }
     }

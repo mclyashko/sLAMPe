@@ -11,3 +11,4 @@ RUN apt-get install -y libpng-dev &&  \
     docker-php-ext-install gd &&  \
     composer require fakerphp/faker &&  \
     composer require amenadiel/jpgraph
+RUN a2enmod rewrite

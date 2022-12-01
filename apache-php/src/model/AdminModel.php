@@ -1,10 +1,27 @@
 <?php
 
-class AdminModel {
+namespace model;
+
+use mysqli;
+
+class AdminModel
+{
+    static private ?AdminModel $state = null;
+
     private mysqli $mysqli;
 
-    public function __construct() {
-        $this->mysqli = (new MysqliDb())->getConnection();
+    private function __construct($mysqli)
+    {
+        $this->mysqli = $mysqli;
+    }
+
+    public static function getState($mysqli): ?AdminModel
+    {
+        if (AdminModel::$state == null) {
+            AdminModel::$state = new AdminModel($mysqli);
+        }
+
+        return AdminModel::$state;
     }
 
     public function getAll(): array

@@ -9,3 +9,5 @@ foreach ($users as $user) {
         </div>
     USER_INFO;
 }
+
+phpinfo();
