@@ -18,9 +18,6 @@ class Router
         $uri = $_SERVER['REQUEST_URI'];
         $params = parse_url($uri);
 
-        var_dump($uri);
-        var_dump($params);
-
         switch ($uri) {
             case "/admin/admin.php":
                 AdminController::getState(
@@ -35,6 +32,27 @@ class Router
                         new mysqli(dbHost, dbUser, dbPass, dbName)
                     ),
                 )->getWeather();
+                break;
+            case (bool)preg_match("/admin\/weather.php.*/", $uri):
+                WeatherController::getState(
+                    AdminModel::getState(
+                        new mysqli(dbHost, dbUser, dbPass, dbName)
+                    ),
+                )->api();
+                break;
+            case (bool)preg_match("/admin\/users.php.*/", $uri):
+                AdminController::getState(
+                    AdminModel::getState(
+                        new mysqli(dbHost, dbUser, dbPass, dbName)
+                    ),
+                )->api();
+                break;
+            case (bool)preg_match("/forecast.php.*/", $uri):
+                WeatherController::getState(
+                    WeatherModel::getState(
+                        new mysqli(dbHost, dbUser, dbPass, dbName)
+                    )
+                )->api();
                 break;
         }
     }

@@ -30,4 +30,9 @@ class AdminController
 
         require __DIR__ . '/../view/AdminView.php';
     }
+
+    public function api(): void
+    {
+        $this->adminModel->api();
+    }
 }

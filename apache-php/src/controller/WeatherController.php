@@ -26,8 +26,22 @@ class WeatherController
 
     public function getWeather(): void
     {
-         $weather_report = $this->weatherModel->getWeather();
+        $weather_report = $this->weatherModel->getWeather();
 
-         require __DIR__ . '/../view/WeatherView.php';
+        require __DIR__ . '/../view/WeatherView.php';
+    }
+
+    public function updateWeather(): void
+    {
+        $this->weatherModel->updateWeather();
+
+        $weather_report = $this->weatherModel->getWeather();
+
+        require __DIR__ . '/../view/WeatherView.php';
+    }
+
+    public function api(): void
+    {
+        $this->weatherModel->api();
     }
 }
