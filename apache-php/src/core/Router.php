@@ -39,9 +39,16 @@ class Router
                     ),
                 )->getWeather();
                 break;
+            case (bool)preg_match("/admin\/weather_gui.php.*/", $uri):
+                WeatherController::getState(
+                    WeatherModel::getState(
+                        new mysqli(dbHost, dbUser, dbPass, dbName)
+                    ),
+                )->updateWeather();
+                break;
             case (bool)preg_match("/admin\/weather.php.*/", $uri):
                 WeatherController::getState(
-                    AdminModel::getState(
+                    WeatherModel::getState(
                         new mysqli(dbHost, dbUser, dbPass, dbName)
                     ),
                 )->api();
@@ -51,13 +58,6 @@ class Router
                     AdminModel::getState(
                         new mysqli(dbHost, dbUser, dbPass, dbName)
                     ),
-                )->api();
-                break;
-            case (bool)preg_match("/forecast.php.*/", $uri):
-                WeatherController::getState(
-                    WeatherModel::getState(
-                        new mysqli(dbHost, dbUser, dbPass, dbName)
-                    )
                 )->api();
                 break;
             case (bool)preg_match("/file_get.php.*/", $uri):

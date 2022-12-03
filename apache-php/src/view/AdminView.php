@@ -13,7 +13,7 @@ foreach ($users as $user) {
 ?>
 
 <div>
-    <form name="form" method="post" action="/admin/weather.php">
+    <form name="form" method="post" action="/admin/weather_gui.php">
         <span>День:</span>
         <select name="day">
             <?php

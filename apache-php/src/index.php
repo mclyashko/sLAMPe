@@ -42,11 +42,11 @@ function set_enlarged_font(): void
     }
 }
 
-set_theme();
-set_enlarged_font();
-
+if (!preg_match("/file_get.php.*/", $_SERVER['REQUEST_URI'])) {
+    set_theme();
+    set_enlarged_font();
+}
 // сквозная функциональность сессий
 
 $router = new Router;
 $router->run();
-echo "index";
