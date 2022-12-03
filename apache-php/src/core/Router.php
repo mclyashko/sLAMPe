@@ -4,9 +4,11 @@ namespace core;
 
 use controller\AdminController;
 use controller\FileController;
+use controller\GraphController;
 use controller\WeatherController;
 use model\AdminModel;
 use model\FileModel;
+use model\GraphModel;
 use model\WeatherModel;
 use mysqli;
 use MongoDB;
@@ -110,6 +112,11 @@ class Router
                         $collection
                     )
                 )->getFilePage();
+                break;
+            case (bool)preg_match("/graphs.php.*/", $uri):
+                GraphController::getState(
+                    GraphModel::getState()
+                )->printGraphs();
                 break;
         }
     }
