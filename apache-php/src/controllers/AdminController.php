@@ -42,8 +42,14 @@ class AdminController extends Controller
 
         $weatherModel->updateWeather();
 
-        return $this->render('index', [
-            'weather_report' => $weatherModel->getWeather(),
+        $adminModel = Admin::getState(
+            new mysqli(dbHost, dbUser, dbPass, dbName)
+        );
+
+        $users = $adminModel->getAll();
+
+        return $this->render('admin', [
+            'users' => $users,
         ]);
     }
 
