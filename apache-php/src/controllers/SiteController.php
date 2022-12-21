@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Graphs;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -16,6 +17,8 @@ const dbHost = 'mysql', dbUser = 'user', dbPass = 'password', dbName = 'appDB';
 
 class SiteController extends Controller
 {
+    public $enableCsrfValidation = false;
+
     /**
      * {@inheritdoc}
      */
@@ -70,5 +73,13 @@ class SiteController extends Controller
         return $this->render('index', [
             'weather_report' => $model->getWeather(),
         ]);
+    }
+
+    public function actionApi() {
+        $siteModel = Site::getState(
+            new mysqli(dbHost, dbUser, dbPass, dbName)
+        );
+
+        return $siteModel->api();
     }
 }
