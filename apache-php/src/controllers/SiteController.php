@@ -9,6 +9,10 @@ use yii\web\Response;
 use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
+use app\models\Site;
+use mysqli;
+
+const dbHost = 'mysql', dbUser = 'user', dbPass = 'password', dbName = 'appDB';
 
 class SiteController extends Controller
 {
@@ -61,68 +65,10 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
-    }
+        $model = Site::getState(new mysqli(dbHost, dbUser, dbPass, dbName));
 
-    /**
-     * Login action.
-     *
-     * @return Response|string
-     */
-    public function actionLogin()
-    {
-        if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
-        }
-
-        $model = new LoginForm();
-        if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
-        }
-
-        $model->password = '';
-        return $this->render('login', [
-            'model' => $model,
+        return $this->render('index', [
+            'weather_report' => $model->getWeather(),
         ]);
-    }
-
-    /**
-     * Logout action.
-     *
-     * @return Response
-     */
-    public function actionLogout()
-    {
-        Yii::$app->user->logout();
-
-        return $this->goHome();
-    }
-
-    /**
-     * Displays contact page.
-     *
-     * @return Response|string
-     */
-    public function actionContact()
-    {
-        $model = new ContactForm();
-        if ($model->load(Yii::$app->request->post()) && $model->contact(Yii::$app->params['adminEmail'])) {
-            Yii::$app->session->setFlash('contactFormSubmitted');
-
-            return $this->refresh();
-        }
-        return $this->render('contact', [
-            'model' => $model,
-        ]);
-    }
-
-    /**
-     * Displays about page.
-     *
-     * @return string
-     */
-    public function actionAbout()
-    {
-        return $this->render('about');
     }
 }

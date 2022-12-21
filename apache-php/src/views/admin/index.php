@@ -1,6 +1,6 @@
 <?php
 
-require_once 'const.php';
+require_once __DIR__ . '/../site/const.php';
 
 if (isset($_POST[session_login])) {
     $_SESSION[session_login] = $_POST[session_login];

@@ -10,7 +10,6 @@ RUN composer require mongodb/mongodb
 RUN apt-get install -y libwebp-dev libjpeg62-turbo-dev libpng-dev libxpm-dev libfreetype6-dev freetype2-demos && \
     docker-php-ext-configure gd --enable-gd --with-webp --with-jpeg --with-xpm --with-freetype && \
     docker-php-ext-install gd && \
-#    apache2ctl -D FOREGROUND && \
     composer require fakerphp/faker &&  \
     composer require amenadiel/jpgraph
 RUN a2enmod rewrite
