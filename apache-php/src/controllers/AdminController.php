@@ -19,6 +19,8 @@ const dbHost = 'mysql', dbUser = 'user', dbPass = 'password', dbName = 'appDB';
 
 class AdminController extends Controller
 {
+    public $enableCsrfValidation = false;
+
     public function actionAdmin()
     {
         $adminModel = Admin::getState(
@@ -43,5 +45,14 @@ class AdminController extends Controller
         return $this->render('index', [
             'weather_report' => $weatherModel->getWeather(),
         ]);
+    }
+
+    public function actionApi()
+    {
+        $adminModel = Admin::getState(
+            new mysqli(dbHost, dbUser, dbPass, dbName)
+        );
+
+        return $adminModel->api();
     }
 }

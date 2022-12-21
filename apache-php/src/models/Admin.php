@@ -45,12 +45,12 @@ class Admin extends Model
         return $result;
     }
 
-    private function read(): void
+    private function read()
     {
-        echo json_encode($this->getAll());
+        return json_encode($this->getAll());
     }
 
-    private function update(): void
+    private function update()
     {
         $data = json_decode(file_get_contents("php://input"));
 
@@ -65,33 +65,26 @@ class Admin extends Model
         ";
 
         $this->mysqli->query($query);
-        $this->read();
+        return $this->read();
     }
 
-    private function error(): void
+    private function error()
     {
         http_response_code(404);
-        echo "USER ERROR";
+        return "USER ERROR";
     }
 
-    public function api(): void
+    public function api()
     {
-        header("Access-Control-Allow-Origin: *");
-        header("Content-Type: application/json; charset=UTF-8");
-        header("Access-Control-Allow-Methods: POST");
-        header("Access-Control-Max-Age: 3600");
-        header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+        Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
 
         switch ($_SERVER["REQUEST_METHOD"]) {
             case "GET":
-                $this->read();
-                break;
+                return $this->read();
             case "PUT":
-                $this->update();
-                break;
+                return $this->update();
             default:
-                $this->error();
-                break;
+                return $this->error();
         }
     }
 }
